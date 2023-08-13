@@ -11,16 +11,17 @@ profile:
   address: >
     
 
-news: true  # includes a list of news items
-latest_posts: true  # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true  # includes social icons at the bottom of the page
+news: false  # includes a list of news items
+latest_posts: false  # includes a list of the newest posts
+selected_papers: false # includes a list of papers marked as "selected={true}"
+social: false  # includes social icons at the bottom of the page
 ---
-Ad astra per Aspera
+### Ad astra per Aspera
 
-I'm a Multi-Messenger Astrophysics student at Oregon State University conducting Gravitational Wave research with Dr. Jeffrey Hazboun.
+I'm a Multi-Messenger Astrophysics student at Oregon State University
+conducting Gravitational Wave research with Dr. Jeffrey Hazboun.
 
-Research Interests
+#### Research Interests
 
 <r_int>Gravitational Waves in PTA & LISA bands</r_int>
 <r_int>Binary localization &amp; Anisotropy in the SGWB</r_int>
