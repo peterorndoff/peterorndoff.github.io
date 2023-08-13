@@ -22,9 +22,9 @@ I'm a Multi-Messenger Astrophysics student at Oregon State University conducting
 
 Research Interests
 
-> - Gravitational Waves in PTA & LISA bands
-> - Binary localization &amp; Anisotropy in the SGWB
-> - Supermassive Black Hole Binary Evolution
-> - Primordial Gravitational Waves
-> - Active Galactic Nuclei Structure
-> - Cosmic Origins
+Gravitational Waves in PTA & LISA bands
+Binary localization &amp; Anisotropy in the SGWB
+Supermassive Black Hole Binary Evolution
+Primordial Gravitational Waves
+Active Galactic Nuclei Structure
+Cosmic Origins
