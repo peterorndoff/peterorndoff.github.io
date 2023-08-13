@@ -18,8 +18,7 @@ social: false  # includes social icons at the bottom of the page
 ---
 <ad_astra> Ad astra per Aspera</ad_astra>
 
-<desc_> I'm a Multi-Messenger Astrophysics student at Oregon State University
-conducting Gravitational Wave research with Dr. Jeffrey Hazboun.<desc_>
+<desc_> <p>I'm a Multi-Messenger Astrophysics student at Oregon State University conducting Gravitational Wave research with Dr. Jeffrey Hazboun. </p> <desc_>
 
 <sub_topic> Research Interests</sub_topic>
 
