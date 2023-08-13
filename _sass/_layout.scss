@@ -12,12 +12,16 @@ body {
   }
 }
 
-r_int {
+.r_int {
   display: block;
   text-align: center;
   margin-block: 8px;
 }
 
+.main_text {
+  display: block;
+  text-align: center;
+}
 
 body.fixed-top-nav {
   // Add some padding for the nav-bar.
