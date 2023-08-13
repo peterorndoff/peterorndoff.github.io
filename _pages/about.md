@@ -17,15 +17,15 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
                 
-Ad astra per Aspera
-I'm a Multi-Messenger Astrophysics student at Oregon State University conducting Gravitational Wave research with Dr. Jeffrey Hazboun.
+## Ad astra per Aspera
 
-Research Interests:
+#### I'm a Multi-Messenger Astrophysics student at Oregon State University conducting Gravitational Wave research with Dr. Jeffrey Hazboun.
 
-    Gravitational Waves in PTA &amp; LISA bands<
-    Binary localization &amp; Anisotropy in the SGWB
-    Supermassive Black Hole Binary Evolution
-    Primordial Gravitational Waves
-    Active Galactic Nuclei Structure
-    Cosmic Origins
-
+### Research Interests
+---
+- Gravitational Waves in PTA & LISA bands
+- Binary localization &amp; Anisotropy in the SGWB
+- Supermassive Black Hole Binary Evolution
+- Primordial Gravitational Waves
+- Active Galactic Nuclei Structure
+- Cosmic Origins
