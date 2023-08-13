@@ -16,12 +16,12 @@ latest_posts: false  # includes a list of the newest posts
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
-<ad_astra>### Ad astra per Aspera</ad_astra>
+<ad_astra> Ad astra per Aspera</ad_astra>
 
 I'm a Multi-Messenger Astrophysics student at Oregon State University
 conducting Gravitational Wave research with Dr. Jeffrey Hazboun.
 
-<sub_topic>#### Research Interests</sub_topic>
+<sub_topic> Research Interests</sub_topic>
 
 <r_int>Gravitational Waves in PTA & LISA bands</r_int>
 <r_int>Binary localization &amp; Anisotropy in the SGWB</r_int>
