@@ -16,11 +16,12 @@ r_int {
   display: block;
   text-align: center;
   margin-block: 8px;
+  font-size:15px;
 }
 
 ad_astra {
   color: #92cbdf;
-  font-size:20px;
+  font-size:23px;
   margin-block: 10px;
   padding-top:25px;
   padding-bottom:25px;
@@ -30,6 +31,12 @@ sub_topic {
   color: #92cbdf;
   margin-top: 30px;
   font-size:20px;
+}
+
+desc_ {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size:15px;
 }
 
 .main_text {
