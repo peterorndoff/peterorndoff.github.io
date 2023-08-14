@@ -15,7 +15,7 @@ body {
 r_int {
   display: block;
   text-align: center;
-  margin-block: 8px;
+  margin-block: 12px;
   font-size:15px;
 }
 
@@ -25,6 +25,7 @@ ad_astra {
   margin-block: 10px;
   padding-top:25px;
   display: block;
+  letter-spacing: 1px;
 }
 
 sub_topic {
@@ -32,6 +33,7 @@ sub_topic {
   margin-top: 30px;
   font-size:20px;
   display: block;
+  letter-spacing: 1px;
 }
 
 desc_ {
@@ -39,6 +41,7 @@ desc_ {
   margin-bottom: 1.5rem;
   font-size:15px;
   display: inline-block;
+  max-width: 70%;
 }
 
 hr {
