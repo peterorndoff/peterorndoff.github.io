@@ -24,20 +24,29 @@ ad_astra {
   font-size:23px;
   margin-block: 10px;
   padding-top:25px;
-  padding-bottom:25px;
+  display: block;
 }
 
 sub_topic {
   color: #92cbdf;
   margin-top: 30px;
   font-size:20px;
+  display: block;
 }
 
 desc_ {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   font-size:15px;
-  display: block;
+  display: inline-block;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 0 auto; /* Center the <hr> horizontally */
+  width: 40%; /* Set the width to 50% of its container */
+  opacity:50%;
 }
 
 .main_text {

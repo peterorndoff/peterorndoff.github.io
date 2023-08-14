@@ -21,7 +21,7 @@ social: false  # includes social icons at the bottom of the page
 <desc_> <p>I'm a Multi-Messenger Astrophysics student at Oregon State University conducting Gravitational Wave research with Dr. Jeffrey Hazboun. </p> </desc_>
 
 <sub_topic> Research Interests</sub_topic>
-
+<hr>
 <r_int>Gravitational Waves in PTA & LISA bands</r_int>
 <r_int>Binary localization &amp; Anisotropy in the SGWB</r_int>
 <r_int>Supermassive Black Hole Binary Evolution</r_int>
