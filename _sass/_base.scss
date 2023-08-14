@@ -16,7 +16,7 @@ div,
 li,
 span,
 strong {
-  color: var(--global-text-color);
+  color: white;
 }
 
 
@@ -330,7 +330,7 @@ blockquote {
 
 // Footer
 footer.fixed-bottom {
-  background-color: var(--global-footer-bg-color);
+  background-color: var(--global-bg-color);
   font-size: 0.75rem;
 
   .container {
