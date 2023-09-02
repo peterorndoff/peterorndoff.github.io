@@ -21,19 +21,24 @@ body {
   }
 }
 
+.main_text {
+  display: block;
+  text-align: center;
+}
+
+.swg_container img {
+  padding-top: 100px;
+  opacity: 0.9;
+  width: 700px;
+  height: 400px;
+}
+
+
 r_int {
   display: block;
   text-align: center;
   margin-block: 12px;
   font-size:15px;
-}
-
-swg_gif {
-  display: block;
-  padding-top: 100px;
-  opacity: 0.9;
-  width: 700px;
-  height: 400px;
 }
 
 ad_astra {
@@ -66,11 +71,6 @@ hr {
   margin: 0 auto; /* Center the <hr> horizontally */
   width: 40%; /* Set the width to 50% of its container */
   opacity:50%;
-}
-
-.main_text {
-  display: block;
-  text-align: center;
 }
 
 body.fixed-top-nav {
