@@ -30,6 +30,6 @@ social: false  # includes social icons at the bottom of the page
 <r_int>Cosmic Origins</r_int>
 
 
-<class="swg_container">
+<class=swg_container>
   <img src="assets/gif/gwb.gif" alt="Stochastic Gravitational Wave Background generated using gw_sky" width="700px" height="400px">
 </swg_container>
