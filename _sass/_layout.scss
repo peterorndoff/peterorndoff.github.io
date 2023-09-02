@@ -26,8 +26,12 @@ body {
   text-align: center;
 }
 
-.swg_container img {
+
+swg_container {
   padding-top: 100px;
+}
+
+.swg_container img {
   opacity: 0.9;
   width: 700px;
   height: 400px;
