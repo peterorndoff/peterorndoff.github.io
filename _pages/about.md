@@ -28,3 +28,7 @@ social: false  # includes social icons at the bottom of the page
 <r_int>Primordial Gravitational Waves</r_int>
 <r_int>Active Galactic Nuclei Structure</r_int>
 <r_int>Cosmic Origins</r_int>
+
+
+![Stochastic Gravitational Wave Background generated using gw_sky](assets/gif/gwb.gif)
+
