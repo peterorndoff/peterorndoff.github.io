@@ -31,6 +31,6 @@ social: false  # includes social icons at the bottom of the page
 
 
 <swg_container>
-  <img src="assets/gif/gwb.gif" alt="Stochastic Gravitational Wave Background generated using gw_sky" width="700px" height="400px">
+  <img src="assets/gif/gwb.gif" alt="Stochastic Gravitational Wave Background generated using gw_sky" width="90%" height="90%">
 </swg_container>
-<r_int>Anisoptropy of the Stochastic Graviational Wave Background. Generated using gw_sky with Holodeck SMBHB realizations provided by Emiko Gardiner.</r_int>
+<r_int> Anisoptropy of the Stochastic Graviational Wave Background. Generated using gw_sky with Holodeck SMBHB realizations provided by Emiko C. Gardiner. </r_int>
