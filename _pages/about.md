@@ -21,7 +21,7 @@ social: false  # includes social icons at the bottom of the page
 <desc_> <p>I'm a Multi-Messenger Astrophysics student at Oregon State University conducting Gravitational Wave research with Dr. Jeffrey Hazboun. </p> </desc_>
 
 <sub_topic> Research Interests</sub_topic>
-<hr>
+<borderline>
 <r_int>Gravitational Waves in PTA & LISA bands</r_int>
 <r_int>SMBHB localization &amp; Anisotropy in the SGWB</r_int>
 <r_int>Supermassive Black Hole Binary Evolution</r_int>
@@ -30,7 +30,7 @@ social: false  # includes social icons at the bottom of the page
 <r_int>Cosmic Origins</r_int>
 
 <sub_topic_2>Projects</sub_topic_2>
-<hr>
+<borderline>
 
 <swg_container>
   <img src="assets/gif/gwb.gif" alt="Stochastic Gravitational Wave Background generated using gw_sky" width="90%" height="90%">
