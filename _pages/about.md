@@ -29,8 +29,7 @@ social: false  # includes social icons at the bottom of the page
 <r_int>Active Galactic Nuclei Structure</r_int>
 <r_int>Cosmic Origins</r_int>
 
-
-<sub_topic>Projects</sub_topic>
+<sub_topic_2>Projects</sub_topic_2>
 
 
 <swg_container>
