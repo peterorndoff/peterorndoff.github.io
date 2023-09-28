@@ -22,7 +22,7 @@ d-article {
   p, h1, h2, h3, h4, h5, h6, li, table {
     color: var(--global-text-color) !important;
   }
-  h1, h2, hr, table, table th, table td {
+  h1, h2, table, table th, table td {
     border-bottom-color: var(--global-divider-color) !important;
   }
   a {
