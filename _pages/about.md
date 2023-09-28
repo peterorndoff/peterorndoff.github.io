@@ -23,11 +23,14 @@ social: false  # includes social icons at the bottom of the page
 <sub_topic> Research Interests</sub_topic>
 <hr>
 <r_int>Gravitational Waves in PTA & LISA bands</r_int>
-<r_int>Binary localization &amp; Anisotropy in the SGWB</r_int>
+<r_int>SMBHB localization &amp; Anisotropy in the SGWB</r_int>
 <r_int>Supermassive Black Hole Binary Evolution</r_int>
 <r_int>Primordial Gravitational Waves</r_int>
 <r_int>Active Galactic Nuclei Structure</r_int>
 <r_int>Cosmic Origins</r_int>
+
+
+<sub_topic>Projects</sub_topic>
 
 
 <swg_container>
