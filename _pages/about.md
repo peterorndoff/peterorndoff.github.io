@@ -26,7 +26,7 @@ social: false  # includes social icons at the bottom of the page
 <r_int>Cosmic Origins</r_int>
 <r_int>Primordial Gravitational Waves</r_int>
 <r_int>SMBHB Physics &amp; AGN Engines</r_int>
-<r_int>Structure of Dark Matter</r_int>
+<r_int>Dark Matter Structure</r_int>
 
 
 <sub_topic_2>Projects</sub_topic_2>
