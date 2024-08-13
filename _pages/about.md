@@ -32,6 +32,7 @@ social: false  # includes social icons at the bottom of the page
 <sub_topic_2>Projects</sub_topic_2>
 <hr>
 
+
 <r_int>  <p> Moriarty: Variable redshift Dark Matter Clustering
   <img src="assets\img\dmo.png" alt="Stochastic Gravitational Wave Background generated using gw_sky" width="90%" height="90%">
 
