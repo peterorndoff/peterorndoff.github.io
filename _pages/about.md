@@ -31,9 +31,6 @@ social: false  # includes social icons at the bottom of the page
 <sub_topic_2>Projects</sub_topic_2>
 <hr>
 
-<sub_topic_3>
-<r_int> In-Progress: Cosmic Linear Anisotropy Solving System > Dark Matter Overdensities </r_int> </sub_topic_3>
-
 <sub_topic_3>  <img src="assets\img\dmo.png" width="90%" height="90%">
 <r_int> Moriarty: Realizations of Dark Matter Overdensity generated using ΛCDM cosmological parameters. </r_int> </sub_topic_3>
 
