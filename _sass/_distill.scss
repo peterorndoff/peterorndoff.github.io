@@ -61,13 +61,11 @@ d-article {
     grid-column: 1 / 4;
     grid-row: auto / span 4;
     justify-self: end;
-    margin-top: 0em;
     padding-left: 2em;
     padding-right: 3em;
     border-right: 1px solid var(--global-divider-color);
     width: calc(max(70%, 300px));
     margin-right: 0px;
-    margin-top:  0em;
     display: grid;
     grid-template-columns:
       minmax(8px, 1fr) [toc] auto
