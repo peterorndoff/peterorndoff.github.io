@@ -22,9 +22,9 @@ social: false  # includes social icons at the bottom of the page
 
 <sub_topic>Interests</sub_topic>
 <hr>
-<r_int>A.I</r_int>
+<r_int>Quantum/Thermodynamic Computing</r_int>
 <r_int>Cosmic Origins</r_int>
-<r_int>Primordial Gravitational Waves</r_int>
+<r_int>Early Universe Cosmology</r_int>
 <r_int>SMBHB Physics &amp; AGN Engines</r_int>
 <r_int>Dark Matter Structure</r_int>
 
