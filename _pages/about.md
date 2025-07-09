@@ -30,15 +30,14 @@ social: false  # includes social icons at the bottom of the page
 <sub_topic_2>Projects</sub_topic_2>
 <hr>
 
-
-<sub_topic_3> <r_int> ExoPlanet-ML: Natural Language Processing applied to Exoplanets. Enables users to search and filter satellites using intuitive, human-like commands, laying the groundwork for intelligent orbital data interaction. (IN-DEV)  </r_int> </sub_topic_3>
+<sub_topic_3> <r_int> BeyondSOL-ML: Natural Language Processing applied to Exoplanets. Enables users to search and filter satellites using intuitive, human-like commands, laying the groundwork for intelligent orbital data interaction. (IN-DEV)  </r_int> </sub_topic_3>
 
 <sub_topic_3>  <img src="assets\img\dmo_2.png" width="90%" height="90%">
 <r_int> Moriarty: Cosmological Dark Matter Distrubution realized using ΛCDM cosmological parameters. Built using Python libaries and CLASS </r_int> </sub_topic_3>
 
 <sub_topic_3> <img src="assets/gif/gwb.gif" width="90%" height="90%">
 
-<r_int> gw_sky: Gravitational Wave (GW) Background radiated by Supermassive Binary Black Hole systems as seen by Pulsar Timing Arrays. Enables interactive exploration of GW anisotropy. </r_int> </sub_topic_3>
+<r_int> GW_SKY: Gravitational Wave (GW) Background radiated by Supermassive Binary Black Hole systems as seen by Pulsar Timing Arrays. Enables interactive exploration of GW anisotropy. </r_int> </sub_topic_3>
 
 <sub_topic_3> <img src="assets\img\wa.png" width="90%" height="90%">
 <r_int>  WeatherX: A clean, responsive weather app built as a final project for a computer science course. Pulls real-time data and forecasts with an intuitive user interface and basic location-based filtering. </r_int> </sub_topic_3>
@@ -47,6 +46,6 @@ social: false  # includes social icons at the bottom of the page
 <r_int> ExoViewer: Top-down galactic map of current Exoplanet locations using NASA's Exoplanet libary API. Natural Language Processing AI implementation In-Progress </r_int> </sub_topic_3>
 
 <sub_topic_3> <img src="assets\img\dl.png" width="90%" height="90%">
-<r_int>  Built a VGA signal generator from scratch using SystemVerilog on an Intel DE10-Lite FPGA board. Developed and tested in Quartus and ModelSim to output display signals at standard resolutions. </r_int> </sub_topic_3>
+<r_int> FPGA VGA Generator: Built from scratch using SystemVerilog on an Intel DE10-Lite FPGA board. Developed and tested in Quartus and ModelSim to output display signals at standard resolutions. </r_int> </sub_topic_3>
 
 
