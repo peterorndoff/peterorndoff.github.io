@@ -30,7 +30,7 @@ social: false  # includes social icons at the bottom of the page
 <sub_topic_2>Projects</sub_topic_2>
 <hr>
 
-<sub_topic_3> <r_int> BeyondSOL-ML: Natural Language Processing applied to Exoplanets. Enables users to search and filter satellites using intuitive, human-like commands, laying the groundwork for intelligent orbital data interaction. (IN-DEV)  </r_int> </sub_topic_3>
+<sub_topic_3> <r_int> BeyondSOL-ML: Natural Language Processing applied to Astrophysical objects.. Enables users to search and filter satellites using intuitive, human-like commands, laying the groundwork for intelligent orbital data interaction. (IN-DEV)  </r_int> </sub_topic_3>
 
 <sub_topic_3>  <img src="assets\img\dmo_2.png" width="90%" height="90%">
 <r_int> Moriarty: Cosmological Dark Matter Distrubution realized using ΛCDM cosmological parameters. Built using Python libaries and CLASS </r_int> </sub_topic_3>
