@@ -36,7 +36,6 @@ social: false  # includes social icons at the bottom of the page
 <r_int> Moriarty: Cosmological Dark Matter Distrubution realized using ΛCDM cosmological parameters. Built using Python libaries and CLASS </r_int> </sub_topic_3>
 
 <sub_topic_3> <img src="assets/gif/gwb.gif" width="90%" height="90%">
-
 <r_int> GW_SKY: Gravitational Wave (GW) Background radiated by Supermassive Binary Black Hole systems as seen by Pulsar Timing Arrays. Enables interactive exploration of GW anisotropy. </r_int> </sub_topic_3>
 
 <sub_topic_3> <img src="assets\img\wa.png" width="90%" height="90%">
