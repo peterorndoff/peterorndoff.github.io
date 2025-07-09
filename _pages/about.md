@@ -22,7 +22,7 @@ social: false  # includes social icons at the bottom of the page
 <sub_topic>Interests</sub_topic>
 <hr>
 <r_int>Machine Learning & AI</r_int>
-<r_int> Supervised Fine Tuning </r_int>
+<r_int>Supervised Fine Tuning </r_int>
 <r_int>Early Universe Cosmology</r_int>
 <r_int>Gravitational Waves</r_int>
 
