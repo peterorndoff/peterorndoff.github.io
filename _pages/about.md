@@ -17,6 +17,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
 
+
 <desc_> <p> I'm a Computational Physicist who's very curious as to how/why the Universe works. </p> </desc_>
 
 <sub_topic>Interests</sub_topic>
@@ -25,7 +26,6 @@ social: false  # includes social icons at the bottom of the page
 <r_int>Supervised Fine Tuning </r_int>
 <r_int>Early Universe Cosmology</r_int>
 <r_int>Gravitational Waves</r_int>
-
 
 <sub_topic_2>Projects</sub_topic_2>
 <hr>
