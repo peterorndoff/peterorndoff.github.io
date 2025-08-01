@@ -18,7 +18,7 @@ social: false  # includes social icons at the bottom of the page
 ---
 
 
-<desc_> <p> I'm a Computational Physicist who's very curious as to how/why the Universe works. </p> </desc_>
+<desc_> <p> I'm a Physicist who's very curious as to how/why the Universe works. </p> </desc_>
 
 <sub_topic>Interests</sub_topic>
 <hr>
