@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peter Orndoff — Physicist x Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0C10;
+    --surface: #12151C;
+    --surface-hover: #1A1E28;
+    --border: #1E2330;
+    --cyan: #06C8D8;
+    --cyan-dim: rgba(6, 200, 216, 0.15);
+    --cyan-glow: rgba(6, 200, 216, 0.4);
+    --orange: #F07830;
+    --orange-dim: rgba(240, 120, 48, 0.15);
+    --text: #E8ECF4;
+    --text-dim: #8E96AD;
+    --text-mid: #A0ABBD;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Outfit', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Grain overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Ambient glows */
+  .ambient {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(180px);
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .ambient-1 { top: -200px; left: -100px; background: var(--cyan); }
+  .ambient-2 { bottom: -300px; right: -100px; background: var(--orange); }
+
+  /* ─── Nav ─── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px 32px;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(10, 12, 16, 0.75);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo span { color: var(--cyan); }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ─── Mobile menu ─── */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle.open span:nth-child(2) { opacity: 0; }
+  .menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* ─── Layout ─── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  section { padding: 100px 0; }
+
+  /* ─── Hero ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+  }
+
+  .hero-content {
+    max-width: 720px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  /* ─── Orbital canvas ─── */
+  #orbits {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ─── Skip to content (a11y) ─── */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--cyan);
+    color: var(--bg);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 12px;
+    z-index: 200;
+    text-decoration: none;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 16px; }
+
+  h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  h1 .cyan { color: var(--cyan); }
+
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 600px;
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--cyan);
+    color: var(--bg);
+    font-weight: 500;
+  }
+  .btn-primary:hover {
+    background: #05dae8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--cyan-dim), 0 0 40px rgba(6, 200, 216, 0.15);
+  }
+
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    transform: translateY(-2px);
+  }
+
+  /* ─── Section labels ─── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-size: clamp(28px, 3.5vw, 38px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  h2 .cyan { color: var(--cyan); }
+
+  .section-desc {
+    font-size: 16px;
+    color: var(--text-mid);
+    font-weight: 300;
+    max-width: 550px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* ─── Filter tabs ─── */
+  .filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .filter-btn:hover {
+    border-color: var(--cyan);
+    color: var(--text);
+  }
+  .filter-btn.active {
+    background: var(--cyan-dim);
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+
+  /* ─── Project Grid ─── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 28px;
+    transition: all 0.35s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .card:hover {
+    border-color: var(--cyan);
+    background: var(--surface-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 30px var(--cyan-dim);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .card-icon.ai { background: var(--cyan-dim); color: var(--cyan); }
+  .card-icon.physics { background: rgba(168, 130, 255, 0.15); color: #A882FF; }
+  .card-icon.hw { background: var(--orange-dim); color: var(--orange); }
+  .card-icon.app { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+
+  .card-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .badge.live { background: rgba(74, 222, 128, 0.12); color: #4ADE80; }
+  .badge.dev { background: rgba(250, 204, 21, 0.12); color: #FACC15; }
+  .badge.research { background: rgba(168, 130, 255, 0.12); color: #A882FF; }
+  .badge.complete { background: rgba(148, 163, 184, 0.12); color: #94A3B8; }
+
+  .card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tech {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* Featured card */
+  .card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px 36px;
+  }
+  .card.featured::before {
+    background: linear-gradient(90deg, var(--orange), var(--cyan), transparent);
+  }
+
+  .featured-left h3 {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+  .featured-left p { font-size: 15px; }
+
+  .featured-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .stat-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .stat-box .val {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cyan);
+  }
+  .stat-box .label {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  /* ─── About ─── */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .about-stat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: all 0.25s ease;
+  }
+  .about-stat:hover {
+    border-color: var(--cyan);
+    background: var(--surface-hover);
+  }
+
+  .about-stat .num {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cyan);
+  }
+
+  .about-stat .lbl {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  /* ─── Contact ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s ease;
+  }
+  .contact-card:hover {
+    border-color: var(--cyan);
+    background: var(--surface-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  .contact-card svg {
+    width: 20px;
+    height: 20px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .contact-card:hover svg { color: var(--cyan); }
+
+  .contact-card .contact-info { flex: 1; }
+  .contact-card .c-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2px;
+  }
+  .contact-card .c-value {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .contact-card .arrow {
+    color: var(--text-dim);
+    transition: all 0.25s;
+  }
+  .contact-card:hover .arrow {
+    transform: translateX(3px);
+    color: var(--cyan);
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 48px 32px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+  }
+  footer a {
+    color: var(--cyan);
+    text-decoration: none;
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger cards */
+  .card { opacity: 0; animation: fadeUp 0.6s ease both; }
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.18s; }
+  .card:nth-child(3) { animation-delay: 0.26s; }
+  .card:nth-child(4) { animation-delay: 0.34s; }
+  .card:nth-child(5) { animation-delay: 0.42s; }
+  .card:nth-child(6) { animation-delay: 0.50s; }
+  .card:nth-child(7) { animation-delay: 0.58s; }
+  .card:nth-child(8) { animation-delay: 0.66s; }
+  .card:nth-child(9) { animation-delay: 0.74s; }
+
+  /* ─── Focus states (a11y) ─── */
+  .btn:focus-visible,
+  .filter-btn:focus-visible,
+  .contact-card:focus-visible,
+  .nav-links a:focus-visible,
+  .logo:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 12, 16, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { font-size: 16px; letter-spacing: 2px; }
+
+    .hero { min-height: auto; padding-top: 140px; padding-bottom: 60px; }
+    section { padding: 60px 0; }
+    .grid { grid-template-columns: 1fr; }
+    .card.featured { grid-template-columns: 1fr; }
+    .about-content { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#work" class="skip-link">Skip to content</a>
+
+<canvas id="orbits"></canvas>
+
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <div></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#work" onclick="closeMenu()">Work</a></li>
+      <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- ═══ Hero ═══ -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Portfolio</div>
+      <h1>Peter Orndoff<br><span class="cyan">builder</span></h1>
+      <p class="subtitle">From gravitational-wave simulations to production AI agents — I build things that decode complexity. Currently shipping at <strong>Basalt Logic</strong>.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">
+          View my work
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-secondary">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Work ═══ -->
+  <section id="work">
+    <div class="fade-up">
+      <div class="section-label">Selected Work</div>
+      <h2>Things I've <span class="cyan">built</span></h2>
+      <p class="section-desc">AI agents, astrophysics tools, hardware designs, and everything in between.</p>
+    </div>
+
+    <div class="filters fade-up">
+      <button class="filter-btn active" onclick="filter('all', this)">All</button>
+      <button class="filter-btn" onclick="filter('ai', this)">AI / Agents</button>
+      <button class="filter-btn" onclick="filter('physics', this)">Physics / Astro</button>
+      <button class="filter-btn" onclick="filter('app', this)">Applications</button>
+      <button class="filter-btn" onclick="filter('hw', this)">Hardware</button>
+    </div>
+
+    <div class="grid" id="projectGrid">
+
+      <!-- FEATURED: Basalt Logic -->
+      <div class="card featured" data-cat="ai">
+        <div class="featured-left">
+          <div class="card-header">
+            <div class="card-icon ai">&#9889;</div>
+            <div class="card-badges"><span class="badge live">Live</span></div>
+          </div>
+          <h3>Basalt Logic</h3>
+          <p>AI-powered missed call recovery and lead management platform for local businesses. Conversational voice agents handle inbound calls, extract lead data, and deliver structured summaries — turning missed calls into revenue.</p>
+          <div class="tech-stack">
+            <span class="tech">Python</span>
+            <span class="tech">FastAPI</span>
+            <span class="tech">Retell AI</span>
+            <span class="tech">PostgreSQL</span>
+            <span class="tech">Claude Haiku</span>
+            <span class="tech">Twilio</span>
+            <span class="tech">Render</span>
+          </div>
+        </div>
+        <div class="featured-right">
+          <div class="featured-stats">
+            <div class="stat-box">
+              <div class="val">E2E</div>
+              <div class="label">Full pipeline live</div>
+            </div>
+            <div class="stat-box">
+              <div class="val">Multi</div>
+              <div class="label">Tenant architecture</div>
+            </div>
+            <div class="stat-box">
+              <div class="val">FSM</div>
+              <div class="label">Lead state machine</div>
+            </div>
+            <div class="stat-box">
+              <div class="val">5+</div>
+              <div class="label">Industry verticals</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Anamnesis -->
+      <div class="card" data-cat="ai">
+        <div class="card-header">
+          <div class="card-icon ai">&#129504;</div>
+          <div class="card-badges"><span class="badge live">Live</span></div>
+        </div>
+        <h3>Anamnesis</h3>
+        <p>Persistent memory layer for AI agents. Uses Ebbinghaus-inspired decay curves to model memory salience over time. MCP server gives any LLM biologically-modeled recall, formation triggers, and age-aware retrieval.</p>
+        <div class="tech-stack">
+          <span class="tech">Python</span>
+          <span class="tech">MCP</span>
+          <span class="tech">Ebbinghaus Decay</span>
+          <span class="tech">.engram format</span>
+          <span class="tech">Open Source</span>
+        </div>
+      </div>
+
+      <!-- ENCM -->
+      <div class="card" data-cat="ai">
+        <div class="card-header">
+          <div class="card-icon ai">&#128752;</div>
+          <div class="card-badges"><span class="badge dev">In Dev</span></div>
+        </div>
+        <h3>ENCM</h3>
+        <p>Real-time orbital asset visualization platform with natural language search. NLP applied to astrophysical objects — search and filter satellites using intuitive commands. Tron/Encom-inspired aesthetic.</p>
+        <div class="tech-stack">
+          <span class="tech">NLP</span>
+          <span class="tech">Orbital Mechanics</span>
+          <span class="tech">Visualization</span>
+          <span class="tech">Real-time Data</span>
+        </div>
+      </div>
+
+      <!-- GW_SKY -->
+      <div class="card" data-cat="physics">
+        <div class="card-header">
+          <div class="card-icon physics">&#127754;</div>
+          <div class="card-badges"><span class="badge research">Research</span></div>
+        </div>
+        <h3>GW_SKY</h3>
+        <p>Gravitational wave background visualization from supermassive binary black hole systems as observed by Pulsar Timing Arrays. Interactive exploration of gravitational wave anisotropy across the sky.</p>
+        <div class="tech-stack">
+          <span class="tech">Python</span>
+          <span class="tech">GW Physics</span>
+          <span class="tech">PTA Analysis</span>
+          <span class="tech">Interactive Viz</span>
+        </div>
+      </div>
+
+      <!-- Moriarty -->
+      <div class="card" data-cat="physics">
+        <div class="card-header">
+          <div class="card-icon physics">&#127756;</div>
+          <div class="card-badges"><span class="badge research">Research</span></div>
+        </div>
+        <h3>Moriarty</h3>
+        <p>Cosmological dark matter distribution simulation using &#923;CDM parameters. Visualizes large-scale structure formation using the CLASS Boltzmann solver and Python scientific libraries.</p>
+        <div class="tech-stack">
+          <span class="tech">Python</span>
+          <span class="tech">CLASS</span>
+          <span class="tech">&#923;CDM</span>
+          <span class="tech">Power Spectrum</span>
+        </div>
+      </div>
+
+      <!-- ExoViewer -->
+      <div class="card" data-cat="physics">
+        <div class="card-header">
+          <div class="card-icon physics">&#129680;</div>
+          <div class="card-badges"><span class="badge dev">In Dev</span></div>
+        </div>
+        <h3>ExoViewer</h3>
+        <p>Top-down galactic map of confirmed exoplanet locations using NASA's Exoplanet Archive API. NLP-powered search in progress for natural language querying of planetary properties.</p>
+        <div class="tech-stack">
+          <span class="tech">NASA API</span>
+          <span class="tech">NLP</span>
+          <span class="tech">Galactic Mapping</span>
+          <span class="tech">Data Viz</span>
+        </div>
+      </div>
+
+      <!-- WeatherX -->
+      <div class="card" data-cat="app">
+        <div class="card-header">
+          <div class="card-icon app">&#9924;</div>
+          <div class="card-badges"><span class="badge complete">Complete</span></div>
+        </div>
+        <h3>WeatherX</h3>
+        <p>Clean, responsive weather application with real-time data and forecasts. Location-based filtering with an intuitive interface. Built as a capstone CS project.</p>
+        <div class="tech-stack">
+          <span class="tech">JavaScript</span>
+          <span class="tech">Weather API</span>
+          <span class="tech">Responsive UI</span>
+        </div>
+      </div>
+
+      <!-- FPGA -->
+      <div class="card" data-cat="hw">
+        <div class="card-header">
+          <div class="card-icon hw">&#128295;</div>
+          <div class="card-badges"><span class="badge complete">Complete</span></div>
+        </div>
+        <h3>FPGA VGA Generator</h3>
+        <p>VGA signal generator built from scratch in SystemVerilog on an Intel DE10-Lite FPGA. Developed and tested in Quartus Prime and ModelSim, outputting display signals at standard resolutions.</p>
+        <div class="tech-stack">
+          <span class="tech">SystemVerilog</span>
+          <span class="tech">Intel FPGA</span>
+          <span class="tech">Quartus</span>
+          <span class="tech">ModelSim</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ About ═══ -->
+  <section id="about">
+    <div class="fade-up">
+      <div class="section-label">About</div>
+      <h2>A bit about <span class="cyan">me</span></h2>
+    </div>
+
+    <div class="about-content fade-up">
+      <div class="about-text">
+        <p>I'm Peter Orndoff — a physicist turned builder. I work at the intersection of science and engineering, applying first-principles thinking to everything from AI agent systems to gravitational wave research.</p>
+        <p>I believe the best tools come from deeply understanding the problem. Whether it's modeling memory decay for an AI or simulating dark matter distributions, the throughline is the same: decode complexity, then build something useful from it.</p>
+      </div>
+
+      <div class="about-stats">
+        <div class="about-stat">
+          <div class="num">9</div>
+          <div class="lbl">Projects shipped</div>
+        </div>
+        <div class="about-stat">
+          <div class="num">3</div>
+          <div class="lbl">Live in production</div>
+        </div>
+        <div class="about-stat">
+          <div class="num">5+</div>
+          <div class="lbl">Industry verticals</div>
+        </div>
+        <div class="about-stat">
+          <div class="num">&infin;</div>
+          <div class="lbl">Cups of coffee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Contact ═══ -->
+  <section id="contact">
+    <div class="fade-up">
+      <div class="section-label">Contact</div>
+      <h2>Let's <span class="cyan">connect</span></h2>
+    </div>
+
+    <div class="contact-grid fade-up">
+      <a href="mailto:peterorndoff@gmail.com" class="contact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+        <div class="contact-info">
+          <div class="c-label">Email</div>
+          <div class="c-value">peterorndoff@gmail.com</div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <a href="https://github.com/peterorndoff" target="_blank" class="contact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        <div class="contact-info">
+          <div class="c-label">GitHub</div>
+          <div class="c-value">@peterorndoff</div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Peter Orndoff — Physicist &times; Builder &nbsp;&middot;&nbsp; <a href="https://peterorndoff.space">peterorndoff.space</a></p>
+</footer>
+
+<script>
+  // ─── Mobile menu ───
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+
+  function closeMenu() {
+    menuToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  }
+
+  // ─── Filter projects ───
+  function filter(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = '';
+        card.style.animation = 'none';
+        card.offsetHeight;
+        card.style.animation = 'fadeUp 0.4s ease both';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // ─── Scroll reveal ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ─── Smooth scroll ───
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ─── Orbital paths ───
+  (() => {
+    const canvas = document.getElementById('orbits');
+    const ctx = canvas.getContext('2d');
+    let w, h, cx, cy;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      cx = w * 0.65;
+      cy = h * 0.4;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Define orbital rings
+    const orbits = [
+      { a: 180, b: 60,  tilt: -0.35, speed: 0.00005,  color: 'rgba(6, 200, 216, 0.08)' },
+      { a: 280, b: 90,  tilt: -0.25, speed: 0.00004,  color: 'rgba(6, 200, 216, 0.06)' },
+      { a: 400, b: 130, tilt: -0.40, speed: 0.00003,  color: 'rgba(6, 200, 216, 0.05)' },
+      { a: 520, b: 170, tilt: -0.20, speed: 0.000023, color: 'rgba(168, 130, 255, 0.04)' },
+      { a: 650, b: 210, tilt: -0.32, speed: 0.000017, color: 'rgba(168, 130, 255, 0.035)' },
+    ];
+
+    // Orbiting bodies — small dots traveling along paths
+    const bodies = [
+      { orbit: 0, angle: 0,      size: 2.5, color: 'rgba(6, 200, 216, 0.6)' },
+      { orbit: 0, angle: Math.PI, size: 1.5, color: 'rgba(6, 200, 216, 0.3)' },
+      { orbit: 1, angle: 1.2,    size: 3,   color: 'rgba(6, 200, 216, 0.5)' },
+      { orbit: 2, angle: 0.5,    size: 2,   color: 'rgba(6, 200, 216, 0.4)' },
+      { orbit: 2, angle: 3.8,    size: 1.5, color: 'rgba(168, 130, 255, 0.3)' },
+      { orbit: 3, angle: 2.0,    size: 2.5, color: 'rgba(168, 130, 255, 0.35)' },
+      { orbit: 4, angle: 4.5,    size: 2,   color: 'rgba(168, 130, 255, 0.25)' },
+    ];
+
+    function getPos(orbit, angle) {
+      const o = orbits[orbit];
+      const cos = Math.cos(o.tilt);
+      const sin = Math.sin(o.tilt);
+      const x = o.a * Math.cos(angle);
+      const y = o.b * Math.sin(angle);
+      return {
+        x: cx + x * cos - y * sin,
+        y: cy + x * sin + y * cos,
+      };
+    }
+
+    function drawEllipse(o) {
+      ctx.beginPath();
+      ctx.strokeStyle = o.color;
+      ctx.lineWidth = 1;
+      const steps = 200;
+      for (let i = 0; i <= steps; i++) {
+        const angle = (i / steps) * Math.PI * 2;
+        const cos = Math.cos(o.tilt);
+        const sin = Math.sin(o.tilt);
+        const x = o.a * Math.cos(angle);
+        const y = o.b * Math.sin(angle);
+        const px = cx + x * cos - y * sin;
+        const py = cy + x * sin + y * cos;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    let t = 0;
+    function animate() {
+      t++;
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw orbital paths
+      orbits.forEach(drawEllipse);
+
+      // Draw & move bodies
+      bodies.forEach(body => {
+        const o = orbits[body.orbit];
+        body.angle += o.speed * 60;
+        const pos = getPos(body.orbit, body.angle);
+
+        // Glow
+        const grad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, body.size * 4);
+        grad.addColorStop(0, body.color);
+        grad.addColorStop(1, 'transparent');
+        ctx.beginPath();
+        ctx.fillStyle = grad;
+        ctx.arc(pos.x, pos.y, body.size * 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Core dot
+        ctx.beginPath();
+        ctx.fillStyle = body.color;
+        ctx.arc(pos.x, pos.y, body.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+</script>
+
+</body>
+</html>
